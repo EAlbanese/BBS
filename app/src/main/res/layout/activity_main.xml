@@ -25,6 +25,7 @@
         android:layout_marginEnd="56dp"
         android:layout_marginBottom="33dp"
         android:background="#5171E0"
+        android:onClick="createTrip"
         android:text="New Trip"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
