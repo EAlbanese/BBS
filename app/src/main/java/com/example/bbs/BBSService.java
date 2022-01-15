@@ -13,6 +13,9 @@ public class BBSService extends Service {
     private final IBinder binder = new LocalBinder();
 
     public static Address address;
+    public static String destination;
+    public static String startTime;
+    public static String endTime;
 
     public static void saveLocation(Address addresses) {
         address = addresses;
@@ -20,6 +23,27 @@ public class BBSService extends Service {
 
     public static Address getLocation(){
         return address;
+    }
+
+    public static void saveDestination(String setDestination){
+        destination = setDestination;
+    }
+
+    public static String getDestination(){
+        return destination;
+    }
+
+    public static void saveTraveltime(String timeStart, String timeEnd){
+        startTime = timeStart;
+        endTime = timeEnd;
+    }
+
+    public static String getStartTime(){
+        return startTime;
+    }
+
+    public static String getEndTime(){
+        return endTime;
     }
 
     public class LocalBinder extends Binder {

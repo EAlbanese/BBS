@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        currentLocationSet = findViewById(R.id.startLocation);
         newTripButton = findViewById(R.id.newTripBtn);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
@@ -56,6 +56,24 @@ public class MainActivity extends AppCompatActivity {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         newTripButton.setOnClickListener(onClickListener);
+
+        TextView currentLocation = findViewById(R.id.start);
+        String startLocation = "";
+        Address location = BBSService.getLocation();
+        if (location != null){
+            startLocation = location.getThoroughfare();
+            currentLocation.setText(startLocation);
+        }
+        TextView destination = findViewById(R.id.end);
+        String setDestination = BBSService.getDestination();
+        destination.setText(setDestination);
+
+        TextView start = findViewById(R.id.startTime);
+        TextView end = findViewById(R.id.endTime);
+        String startTime = BBSService.getStartTime();
+        String endTime = BBSService.getEndTime();
+        start.setText(startTime);
+        end.setText(endTime);
     }
 
 
@@ -97,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void createTrip() {
         Intent intent = new Intent(this, CreateTrip.class);
-//        intent.putExtra(currentLocation, currentLocationSet.getText().toString());
         startActivity(intent);
     }
 }
